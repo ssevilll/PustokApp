@@ -1,0 +1,82 @@
+﻿using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(config["ConnectionStrings:DefaultConnection"]));
+
+
+var app = builder.Build();
+
+// Initialize seed data
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.Migrate();
+
+    if (!context.Sliders.Any())
+    {
+        context.Sliders.AddRange(
+            new PustokAppMvc.Models.Slider { Title = "J.D. Kurtness <br> De Vengeance", Description = "Discounted items", ButtonText = "Shop Now", ButtonUrl = "#", ImageUrl = "home-slider-1-ai.png" },
+            new PustokAppMvc.Models.Slider { Title = "H.G. Wells <br> De Vengeance", Description = "Discounted items", ButtonText = "Buy Now", ButtonUrl = "#", ImageUrl = "home-slider-2-ai.png" }
+        );
+    }
+
+    if (!context.Authors.Any())
+    {
+        var author1 = new PustokAppMvc.Models.Author { FullName = "J.D. Kurtness" };
+        var author2 = new PustokAppMvc.Models.Author { FullName = "H.G. Wells" };
+        context.Authors.AddRange(author1, author2);
+        context.SaveChanges();
+
+        if (!context.Books.Any())
+        {
+            var books = new List<PustokAppMvc.Models.Book>();
+            for (int i = 1; i <= 13; i++)
+            {
+                books.Add(new PustokAppMvc.Models.Book
+                {
+                    Name = $"Product Book {i}",
+                    Description = "Lorem ipsum dolor sit amet",
+                    Price = 50 + (i * 2),
+                    DiscountPercent = 20,
+                    Code = 1000 + i,
+                    InStock = true,
+                    IsNew = (i % 2 == 0),
+                    AuthorId = (i % 2 == 0) ? author1.Id : author2.Id,
+                    MainImageUrl = $"product-{i}.jpg",
+                    HoverImageUrl = $"product-{(i == 13 ? 1 : i + 1)}.jpg"
+                });
+            }
+            context.Books.AddRange(books);
+        }
+    }
+    
+    context.SaveChanges();
+}
+
+//Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+//app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

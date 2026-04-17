@@ -1,0 +1,141 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+using PustokAppMvc.Models;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class SliderController(AppDbContext context) : Controller
+    {
+        public IActionResult Index()
+        {
+            var sliders = context.Sliders.ToList();
+            return View(sliders);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Slider slider)
+        {
+            ModelState.Remove(nameof(slider.ImageUrl));
+
+            if (!ModelState.IsValid)
+                return View(slider);
+            if (!slider.File.ContentType.Contains("image/") ||
+                slider.File.Length > 1024 * 1024 * 2)
+            {
+                ModelState.AddModelError("File", "Please select image file less than 2mb");
+                return View(slider);
+            }
+
+            string filename = Guid.NewGuid().ToString() + Path.GetExtension(slider.File.FileName);
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", "bg-images");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            string path = Path.Combine(folderPath, filename);
+
+            using var stream = new FileStream(path, FileMode.Create);
+            slider.File.CopyTo(stream);
+
+            var newSlider = new Slider
+            {
+                Title = slider.Title,
+                Description = slider.Description,
+                ButtonText = slider.ButtonText,
+                ButtonUrl = slider.ButtonUrl,
+                ImageUrl = filename,
+            };
+
+            context.Sliders.Add(newSlider);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            var slider = context.Sliders.FirstOrDefault(x => x.Id == id);
+            if (slider == null)
+                return Json(new { success = false, message = "Slider not found" });
+            if (!string.IsNullOrEmpty(slider.ImageUrl))
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", "bg-images", slider.ImageUrl);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+            }
+
+            context.Sliders.Remove(slider);
+            context.SaveChanges();
+            return Json(new { success = true, message = "Slider deleted successfully" });
+        }
+
+        public IActionResult Edit(Guid id)
+        {
+            var slider = context.Sliders.Find(id);
+            if (slider == null) return NotFound();
+            return View(slider);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Slider slider)
+        {
+            ModelState.Remove(nameof(slider.ImageUrl));
+            ModelState.Remove(nameof(slider.File));
+
+            if (!ModelState.IsValid)
+                return View(slider);
+
+            var existingSlider = context.Sliders.Find(slider.Id);
+            if (existingSlider == null) return NotFound();
+
+            if (slider.File != null)
+            {
+                if (!slider.File.ContentType.Contains("image/") || slider.File.Length > 1024 * 1024 * 2)
+                {
+                    ModelState.AddModelError("File", "Please select image file less than 2mb");
+                    return View(slider);
+                }
+
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", "bg-images");
+                
+                if (!string.IsNullOrEmpty(existingSlider.ImageUrl))
+                {
+                    string oldPath = Path.Combine(folderPath, existingSlider.ImageUrl);
+                    if (System.IO.File.Exists(oldPath))
+                    {
+                        System.IO.File.Delete(oldPath);
+                    }
+                }
+
+                string filename = Guid.NewGuid().ToString() + Path.GetExtension(slider.File.FileName);
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                string path = Path.Combine(folderPath, filename);
+
+                using var stream = new FileStream(path, FileMode.Create);
+                slider.File.CopyTo(stream);
+
+                existingSlider.ImageUrl = filename;
+            }
+
+            existingSlider.Title = slider.Title;
+            existingSlider.Description = slider.Description;
+            existingSlider.ButtonText = slider.ButtonText;
+            existingSlider.ButtonUrl = slider.ButtonUrl;
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

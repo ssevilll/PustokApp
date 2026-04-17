@@ -1,0 +1,51 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+using PustokAppMvc.Models;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class AuthorController(AppDbContext context) : Controller
+    {
+        public async Task<IActionResult> Index()
+        {
+            var authors = await context.Authors.ToListAsync();
+            return View(authors);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var author = await context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+            if (author == null) return NotFound();
+            context.Authors.Remove(author);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+
+        public async Task<IActionResult> ModalDetails(Guid id)
+        {
+            var author = await context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+            if (author == null) return NotFound();
+            return PartialView("_ModalDetailsPartial", author);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Author author)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
+            
+            await context.Authors.AddAsync(author);
+            await context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+    }
+}

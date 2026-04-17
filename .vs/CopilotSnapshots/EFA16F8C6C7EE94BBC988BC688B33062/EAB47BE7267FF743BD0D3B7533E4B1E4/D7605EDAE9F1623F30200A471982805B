@@ -1,0 +1,111 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+using PustokAppMvc.Models;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class BookController(AppDbContext context) : Controller
+    {
+        public IActionResult Index()
+        {
+            var books = context.Books.Include(b => b.Author).ToList();
+            return View(books);
+        }
+
+        public IActionResult Create()
+        {
+            ViewBag.authors = context.Authors.ToList();
+            ViewBag.tags = context.Tags.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Book book, IFormFile? mainImage, IFormFile? hoverImage, List<IFormFile>? bookImages, List<Guid>? tagIds)
+        {
+            ModelState.Remove(nameof(book.MainImageUrl));
+            ModelState.Remove(nameof(book.HoverImageUrl));
+            ModelState.Remove(nameof(book.Author));
+            ModelState.Remove(nameof(book.BookImages));
+            ModelState.Remove(nameof(book.BookTags));
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.authors = context.Authors.ToList();
+                ViewBag.tags = context.Tags.ToList();
+                return View(book);
+            }
+
+            if (mainImage == null || !mainImage.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("", "Please select a valid main image.");
+                ViewBag.authors = context.Authors.ToList();
+                ViewBag.tags = context.Tags.ToList();
+                return View(book);
+            }
+
+            if (hoverImage == null || !hoverImage.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("", "Please select a valid hover image.");
+                ViewBag.authors = context.Authors.ToList();
+                ViewBag.tags = context.Tags.ToList();
+                return View(book);
+            }
+
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", "products");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string mainFileName = Guid.NewGuid().ToString() + Path.GetExtension(mainImage.FileName);
+            string mainPath = Path.Combine(folderPath, mainFileName);
+            using (var stream = new FileStream(mainPath, FileMode.Create))
+            {
+                mainImage.CopyTo(stream);
+            }
+            book.MainImageUrl = mainFileName;
+
+            string hoverFileName = Guid.NewGuid().ToString() + Path.GetExtension(hoverImage.FileName);
+            string hoverPath = Path.Combine(folderPath, hoverFileName);
+            using (var stream = new FileStream(hoverPath, FileMode.Create))
+            {
+                hoverImage.CopyTo(stream);
+            }
+            book.HoverImageUrl = hoverFileName;
+
+            book.BookImages = new List<BookImage>();
+            if (bookImages != null && bookImages.Any())
+            {
+                foreach (var file in bookImages)
+                {
+                    if (file.ContentType.Contains("image/"))
+                    {
+                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string filePath = Path.Combine(folderPath, fileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                        book.BookImages.Add(new BookImage { ImageUrl = fileName });
+                    }
+                }
+            }
+
+            book.BookTags = new List<BookTag>();
+            if (tagIds != null && tagIds.Any())
+            {
+                foreach (var tagId in tagIds)
+                {
+                    book.BookTags.Add(new BookTag { TagId = tagId });
+                }
+            }
+
+            context.Books.Add(book);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

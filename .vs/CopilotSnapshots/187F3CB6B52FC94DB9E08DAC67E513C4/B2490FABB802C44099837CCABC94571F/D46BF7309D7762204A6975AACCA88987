@@ -1,0 +1,8 @@
+﻿namespace PustokAppMvc.Models
+{
+    public class BookTag
+    {
+        public Guid BookId { get; set; }
+        public Guid TagId { get; set; }
+    }
+}

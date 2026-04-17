@@ -1,0 +1,32 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class AuthorController(AppDbContext context) : Controller
+    {
+        public IActionResult Index()
+        {
+            var authors = context.Authors.ToList();
+            return View(authors);
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            var author = context.Authors.FirstOrDefault(x => x.Id == id);
+            if (author == null) return NotFound();
+            context.Authors.Remove(author);
+            context.SaveChanges();
+            return Ok();
+        }
+
+        public IActionResult Details(Guid id)
+        {
+            var author = context.Authors.FirstOrDefault(x => x.Id == id);
+            if (author == null) return NotFound();
+            return View(author);
+        }
+    }
+}

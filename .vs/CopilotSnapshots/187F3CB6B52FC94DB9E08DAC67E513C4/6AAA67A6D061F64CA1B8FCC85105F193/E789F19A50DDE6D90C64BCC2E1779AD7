@@ -1,0 +1,113 @@
+﻿using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Models;
+using System.IO;
+
+namespace PustokAppMvc.Data
+{
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+    {
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BookTag> BookTags { get; set; }
+        public DbSet<BookImage> BookImages { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            
+            // Generate deterministic fixed IDs
+            var author1Id = Guid.Parse("11111111-1111-1111-1111-111111111111");
+            var author2Id = Guid.Parse("22222222-2222-2222-2222-222222222222");
+
+            var tag1Id = Guid.Parse("33333333-3333-3333-3333-333333333333");
+            var tag2Id = Guid.Parse("44444444-4444-4444-4444-444444444444");
+
+            var book1Id = Guid.Parse("55555555-5555-5555-5555-555555555555");
+            var book2Id = Guid.Parse("66666666-6666-6666-6666-666666666666");
+
+            modelBuilder.Entity<Author>().HasData(
+                new Author { Id = author1Id, FullName = "John Doe" },
+                new Author { Id = author2Id, FullName = "Jane Smith" }
+            );
+
+            modelBuilder.Entity<Tag>().HasData(
+                new Tag { Id = tag1Id, Name = "Fiction" },
+                new Tag { Id = tag2Id, Name = "Science" }
+            );
+
+            // Read some images dynamically for seeding if user requested it, but we'll use deterministic ones we found 
+            // to ensure it works in EF migrations. Alternatively, fetch names dynamically but pick first few:
+            var productImages = new[] { "product-1.jpg", "product-2.jpg", "product-3.jpg", "product-4.jpg" };
+            string bgImage1 = "home-slider-1-ai.png";
+            string bgImage2 = "home-slider-2-ai.png";
+
+            modelBuilder.Entity<Book>().HasData(
+                new Book
+                {
+                    Id = book1Id,
+                    Name = "Sample Book 1",
+                    Description = "Description for Sample Book 1",
+                    Price = 100,
+                    DiscountPercent = 10,
+                    Code = 1001,
+                    InStock = true,
+                    IsNew = true,
+                    IsFeatured = true,
+                    MainImageUrl = $"image/products/{productImages[0]}",
+                    HoverImageUrl = $"image/products/{productImages[1]}",
+                    AuthorId = author1Id
+                },
+                new Book
+                {
+                    Id = book2Id,
+                    Name = "Sample Book 2",
+                    Description = "Description for Sample Book 2",
+                    Price = 150,
+                    DiscountPercent = 20,
+                    Code = 1002,
+                    InStock = true,
+                    IsNew = false,
+                    IsFeatured = true,
+                    MainImageUrl = $"image/products/{productImages[2]}",
+                    HoverImageUrl = $"image/products/{productImages[3]}",
+                    AuthorId = author2Id
+                }
+            );
+
+            modelBuilder.Entity<BookTag>().HasData(
+                new BookTag { BookId = book1Id, TagId = tag1Id },
+                new BookTag { BookId = book2Id, TagId = tag2Id }
+            );
+
+            modelBuilder.Entity<BookImage>().HasData(
+                new BookImage { Id = Guid.Parse("77777777-7777-7777-7777-777777777777"), BookId = book1Id, ImageUrl = $"image/products/{productImages[0]}" },
+                new BookImage { Id = Guid.Parse("88888888-8888-8888-8888-888888888888"), BookId = book2Id, ImageUrl = $"image/products/{productImages[2]}" }
+            );
+
+            modelBuilder.Entity<Slider>().HasData(
+                new Slider
+                {
+                    Id = Guid.Parse("99999999-9999-9999-9999-999999999999"),
+                    Title = "Awesome Slider 1",
+                    Description = "Amazing books inside",
+                    ButtonText = "Shop Now",
+                    ButtonUrl = "/books",
+                    ImageUrl = $"image/bg-images/{bgImage1}"
+                },
+                new Slider
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    Title = "Awesome Slider 2",
+                    Description = "More amazing books",
+                    ButtonText = "Buy Here",
+                    ButtonUrl = "/books",
+                    ImageUrl = $"image/bg-images/{bgImage2}"
+                }
+            );
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}

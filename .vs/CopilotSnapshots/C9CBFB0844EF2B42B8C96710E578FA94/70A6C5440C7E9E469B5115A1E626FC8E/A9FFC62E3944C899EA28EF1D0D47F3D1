@@ -1,0 +1,20 @@
+﻿@using PustokAppMvc.Models
+@model Author
+
+<div class="modal-header">
+    <h5 class="modal-title" id="authorModalLabel">Author Details</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Id</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+
+        <dt class="col-sm-3">Full Name</dt>
+        <dd class="col-sm-9">@Model.FullName</dd>
+    </dl>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+</div>

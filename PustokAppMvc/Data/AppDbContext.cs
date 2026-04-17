@@ -1,0 +1,114 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Models;
+using System.IO;
+
+namespace PustokAppMvc.Data
+{
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options)
+    {
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BookTag> BookTags { get; set; }
+        public DbSet<BookImage> BookImages { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            // Generate deterministic fixed IDs
+            var a1 = Guid.Parse("a1000000-0000-0000-0000-000000000000");
+            var a2 = Guid.Parse("a2000000-0000-0000-0000-000000000000");
+            var a3 = Guid.Parse("a3000000-0000-0000-0000-000000000000");
+
+            var t1 = Guid.Parse("c1000000-0000-0000-0000-000000000000");
+            var t2 = Guid.Parse("c2000000-0000-0000-0000-000000000000");
+            var t3 = Guid.Parse("c3000000-0000-0000-0000-000000000000");
+
+            var b1 = Guid.Parse("b1000000-0000-0000-0000-000000000000");
+            var b2 = Guid.Parse("b2000000-0000-0000-0000-000000000000");
+            var b3 = Guid.Parse("b3000000-0000-0000-0000-000000000000");
+            var b4 = Guid.Parse("b4000000-0000-0000-0000-000000000000");
+            var b5 = Guid.Parse("b5000000-0000-0000-0000-000000000000");
+            var b6 = Guid.Parse("b6000000-0000-0000-0000-000000000000");
+            var b7 = Guid.Parse("b7000000-0000-0000-0000-000000000000");
+
+            modelBuilder.Entity<Author>().HasData(
+                new Author { Id = a1, FullName = "Stephen King" },
+                new Author { Id = a2, FullName = "J.K. Rowling" },
+                new Author { Id = a3, FullName = "George R.R. Martin" }
+            );
+
+            modelBuilder.Entity<Tag>().HasData(
+                new Tag { Id = t1, Name = "Fiction" },
+                new Tag { Id = t2, Name = "Horror" },
+                new Tag { Id = t3, Name = "Fantasy" }
+            );
+
+            modelBuilder.Entity<Book>().HasData(
+                new Book { Id = b1, Name = "The Shining", Description = "A horror classic", Price = 19.99m, DiscountPercent = 10, Code = 1001, InStock = true, IsNew = true, IsFeatured = true, MainImageUrl = "product-1.jpg", HoverImageUrl = "product-2.jpg", AuthorId = a1 },
+                new Book { Id = b2, Name = "Harry Potter and the Sorcerer's Stone", Description = "Wizard boy", Price = 25.00m, DiscountPercent = 5, Code = 1002, InStock = true, IsNew = false, IsFeatured = true, MainImageUrl = "product-3.jpg", HoverImageUrl = "product-4.jpg", AuthorId = a2 },
+                new Book { Id = b3, Name = "A Game of Thrones", Description = "Winter is coming", Price = 30.00m, DiscountPercent = 0, Code = 1003, InStock = true, IsNew = true, IsFeatured = true, MainImageUrl = "product-5.jpg", HoverImageUrl = "product-6.jpg", AuthorId = a3 },
+                new Book { Id = b4, Name = "IT", Description = "Clown horror", Price = 22.50m, DiscountPercent = 15, Code = 1004, InStock = true, IsNew = false, IsFeatured = false, MainImageUrl = "product-7.jpg", HoverImageUrl = "product-8.jpg", AuthorId = a1 },
+                new Book { Id = b5, Name = "A Clash of Kings", Description = "More winter", Price = 28.00m, DiscountPercent = 0, Code = 1005, InStock = true, IsNew = true, IsFeatured = false, MainImageUrl = "product-9.jpg", HoverImageUrl = "product-10.jpg", AuthorId = a3 },
+                new Book { Id = b6, Name = "Harry Potter and the Chamber of Secrets", Description = "Wizard boy 2", Price = 26.00m, DiscountPercent = 5, Code = 1006, InStock = false, IsNew = false, IsFeatured = true, MainImageUrl = "product-11.jpg", HoverImageUrl = "product-12.jpg", AuthorId = a2 },
+                new Book { Id = b7, Name = "The Stand", Description = "Post-apocalyptic", Price = 35.00m, DiscountPercent = 20, Code = 1007, InStock = true, IsNew = true, IsFeatured = true, MainImageUrl = "product-13.jpg", HoverImageUrl = "product-1.jpg", AuthorId = a1 }
+            );
+
+            modelBuilder.Entity<BookTag>().HasData(
+                new BookTag { BookId = b1, TagId = t1 }, new BookTag { BookId = b1, TagId = t2 },
+                new BookTag { BookId = b2, TagId = t1 }, new BookTag { BookId = b2, TagId = t3 },
+                new BookTag { BookId = b3, TagId = t1 }, new BookTag { BookId = b3, TagId = t3 },
+                new BookTag { BookId = b4, TagId = t2 },
+                new BookTag { BookId = b5, TagId = t3 },
+                new BookTag { BookId = b6, TagId = t3 },
+                new BookTag { BookId = b7, TagId = t1 }, new BookTag { BookId = b7, TagId = t2 }
+            );
+
+            // Adding extra images for books using existing product images
+            modelBuilder.Entity<BookImage>().HasData(
+                new BookImage { Id = Guid.Parse("f1000000-0000-0000-0000-000000000000"), BookId = b1, ImageUrl = "product-details-1.jpg" },
+                new BookImage { Id = Guid.Parse("f2000000-0000-0000-0000-000000000000"), BookId = b1, ImageUrl = "product-details-2.jpg" },
+                new BookImage { Id = Guid.Parse("f3000000-0000-0000-0000-000000000000"), BookId = b2, ImageUrl = "product-details-3.jpg" },
+                new BookImage { Id = Guid.Parse("f4000000-0000-0000-0000-000000000000"), BookId = b3, ImageUrl = "product-details-4.jpg" },
+                new BookImage { Id = Guid.Parse("f5000000-0000-0000-0000-000000000000"), BookId = b4, ImageUrl = "product-details-5.jpg" }
+            );
+
+            modelBuilder.Entity<Slider>().HasData(
+                new Slider
+                {
+                    Id = Guid.Parse("d1000000-0000-0000-0000-000000000000"),
+                    Title = "Book Festival",
+                    Description = "Get up to 50% discount",
+                    ButtonText = "Shop Now",
+                    ButtonUrl = "/books",
+                    ImageUrl = "home-slider-1-ai.png"
+                },
+                new Slider
+                {
+                    Id = Guid.Parse("d2000000-0000-0000-0000-000000000000"),
+                    Title = "Summer Sale",
+                    Description = "Huge collections of new books",
+                    ButtonText = "Discover",
+                    ButtonUrl = "/books",
+                    ImageUrl = "home-slider-2-ai.png"
+                }
+            );
+
+            // Seed Settings Data
+            modelBuilder.Entity<Setting>().HasData(
+                new Setting { Key = "email", Value = "support@hastech.com" },
+                new Setting { Key = "phone", Value = "+18088 234 5678" },
+                new Setting { Key = "address", Value = "Example Street 98, HH2 BacHa, New York, USA" },
+                new Setting { Key = "supportphone", Value = "+01-202-555-0181" },
+                new Setting { Key = "supportemail", Value = "support@hastech.com" },
+                new Setting { Key = "logourl", Value = "logo.png" }
+            );
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}

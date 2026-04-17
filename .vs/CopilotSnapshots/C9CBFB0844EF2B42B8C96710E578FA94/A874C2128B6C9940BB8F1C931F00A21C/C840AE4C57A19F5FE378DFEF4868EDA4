@@ -1,0 +1,8 @@
+﻿@using PustokAppMvc.Models
+@model Author 
+
+<h1>
+    Author Details
+</h1>
+
+

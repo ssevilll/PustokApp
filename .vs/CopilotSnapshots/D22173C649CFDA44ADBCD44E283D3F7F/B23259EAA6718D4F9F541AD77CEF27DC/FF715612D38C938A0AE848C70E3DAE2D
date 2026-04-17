@@ -1,0 +1,20 @@
+﻿using PustokAppMvc.Models.Common;
+
+namespace PustokAppMvc.Models
+{
+    public class Book : BaseEntity
+    {
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public decimal Price { get; set; }
+        public decimal DiscountPercent { get; set; }
+        public int Code { get; set; }
+        public bool InStock { get; set; }
+        public bool IsNew { get; set; }
+        public string MainImageUrl { get; set; } = null!;
+        public string HoverImageUrl { get; set; } = null!;
+        public int AuthorId { get; set; }
+        public List<BookImage> BookImages { get; set; } = null!;
+
+    }
+}

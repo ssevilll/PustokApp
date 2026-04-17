@@ -1,0 +1,56 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+using PustokAppMvc.Models;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class AuthorController(AppDbContext context) : Controller
+    {
+        public IActionResult Index()
+        {
+            var authors = context.Authors.ToList();
+            return View(authors);
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            var author = context.Authors.FirstOrDefault(x => x.Id == id);
+            if (author == null) return NotFound();
+            context.Authors.Remove(author);
+            context.SaveChanges();
+            return Ok();
+        }
+
+
+        public IActionResult ModalDetails(Guid id)
+        {
+            var author = context.Authors.FirstOrDefault(x => x.Id == id);
+            if (author == null) return NotFound();
+            return PartialView("_ModalDetailsPartial", author);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(string fullname)
+        {
+            if (string.IsNullOrWhiteSpace(fullname))
+            {
+                ModelState.AddModelError("FullName", "FullName is required");
+                return View();
+            }
+            Author author = new Author
+            {
+                FullName = fullname
+            };
+            context.Authors.Add(author);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

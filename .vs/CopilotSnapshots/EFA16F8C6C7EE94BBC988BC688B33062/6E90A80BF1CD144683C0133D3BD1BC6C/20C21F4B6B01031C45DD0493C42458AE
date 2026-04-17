@@ -1,0 +1,16 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PustokAppMvc.Data;
+
+namespace PustokAppMvc.Areas.Manage.Controllers
+{
+    [Area("Manage")]
+    public class BookController(AppDbContext context) : Controller
+    {
+        public IActionResult Index()
+        {
+            var books = context.Books.Include(b => b.Author).ToList();
+            return View(books);
+        }
+    }
+}
