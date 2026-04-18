@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PustokAppMvc.Areas.Manage.ViewModels;
 using PustokAppMvc.Models;
@@ -73,6 +74,12 @@ namespace PustokAppMvc.Areas.Manage.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("login");
         }
-  
+        [Authorize]
+        public async Task<IActionResult> UserProfile()
+        {
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            return Json(user);
+        }
+
     }
 }

@@ -329,8 +329,16 @@
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
                                     <div class="login-block">
-                                        <a href="login-register.html" class="font-weight-bold">Login</a> <br>
-                                        <span>or</span><a href="login-register.html">Register</a>
+                                        @if(User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="userprofile" asp-controller="Account" class="font-weight-bold">@User.Identity.Name</a> <br>
+                                            <a asp-action="Logout" asp-controller="Account" class="font-weight-bold">Logout</a> <br>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Login" asp-controller="Account"  class="font-weight-bold">Login</a> <br>
+                                            <a asp-action="Register" asp-controller="Account" class="font-weight-bold">Register</a> <br>
+                                        }
                                     </div>
                                     <div class="cart-block">
                                         <div class="cart-total">
@@ -1133,6 +1141,7 @@
     <script src="~/js/ajax-mail.js"></script>
     <script src="~/js/custom.js"></script>
     <script src="~/js/main.js"></script>
+	@RenderSection("scripts", required: false)
 </body>
 
 

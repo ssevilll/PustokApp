@@ -1,38 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\razdel c\\Desktop\\PustokAppMvc\\",
+  "WorkspaceRootPath": "C:\\Users\\sevilsb\\Desktop\\pustok\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\areas\\manage\\controllers\\adminaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\areas\\manage\\controllers\\adminaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|c:\\users\\sevilsb\\desktop\\pustok\\pustokappmvc\\views\\account\\userprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\views\\account\\userprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\areas\\manage\\viewmodels\\adminloginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\areas\\manage\\viewmodels\\adminloginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\areas\\manage\\views\\adminaccount\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\areas\\manage\\views\\adminaccount\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|c:\\users\\sevilsb\\desktop\\pustok\\pustokappmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|d:\\razdel c\\desktop\\pustokappmvc\\pustokappmvc\\pustokappmvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\pustokappmvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|c:\\users\\sevilsb\\desktop\\pustok\\pustokappmvc\\viewmodel\\uservm\\userprofilevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A84B9FE6-AB9F-4717-B625-D719225477B3}|PustokAppMvc\\PustokAppMvc.csproj|solutionrelative:pustokappmvc\\viewmodel\\uservm\\userprofilevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,114 +22,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 116,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\Views\\AdminAccount\\Login.cshtml",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Areas\\Manage\\Views\\AdminAccount\\Login.cshtml",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\Views\\AdminAccount\\Login.cshtml",
-              "RelativeToolTip": "PustokAppMvc\\Areas\\Manage\\Views\\AdminAccount\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T16:59:32.354Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminLoginVm.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\ViewModels\\AdminLoginVm.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Areas\\Manage\\ViewModels\\AdminLoginVm.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\ViewModels\\AdminLoginVm.cs",
-              "RelativeToolTip": "PustokAppMvc\\Areas\\Manage\\ViewModels\\AdminLoginVm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:56:41.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AdminAccountController.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\Controllers\\AdminAccountController.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Areas\\Manage\\Controllers\\AdminAccountController.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Areas\\Manage\\Controllers\\AdminAccountController.cs",
-              "RelativeToolTip": "PustokAppMvc\\Areas\\Manage\\Controllers\\AdminAccountController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAuwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:40:29.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "PustokAppMvc\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:33:49.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Program.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Program.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Program.cs",
-              "RelativeToolTip": "PustokAppMvc\\Program.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:15:51.749Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PustokAppMvc",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\PustokAppMvc.csproj",
-              "RelativeDocumentMoniker": "PustokAppMvc\\PustokAppMvc.csproj",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\PustokAppMvc.csproj",
-              "RelativeToolTip": "PustokAppMvc\\PustokAppMvc.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-17T16:22:45.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Data\\AppDbContext.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "PustokAppMvc\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA3wBUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:14:34.565Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Models\\AppUser.cs",
-              "RelativeDocumentMoniker": "PustokAppMvc\\Models\\AppUser.cs",
-              "ToolTip": "D:\\razdel c\\Desktop\\PustokAppMvc\\PustokAppMvc\\Models\\AppUser.cs",
-              "RelativeToolTip": "PustokAppMvc\\Models\\AppUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "PustokAppMvc\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "PustokAppMvc\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAkwIIAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T16:12:31.347Z",
+              "WhenOpened": "2026-04-18T08:43:26.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\Views\\Account\\UserProfile.cshtml",
+              "RelativeDocumentMoniker": "PustokAppMvc\\Views\\Account\\UserProfile.cshtml",
+              "ToolTip": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\Views\\Account\\UserProfile.cshtml",
+              "RelativeToolTip": "PustokAppMvc\\Views\\Account\\UserProfile.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAtwCUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T08:44:13.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserProfileVm.cs",
+              "DocumentMoniker": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\ViewModel\\UserVm\\UserProfileVm.cs",
+              "RelativeDocumentMoniker": "PustokAppMvc\\ViewModel\\UserVm\\UserProfileVm.cs",
+              "ToolTip": "C:\\Users\\sevilsb\\Desktop\\pustok\\PustokAppMvc\\ViewModel\\UserVm\\UserProfileVm.cs",
+              "RelativeToolTip": "PustokAppMvc\\ViewModel\\UserVm\\UserProfileVm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T08:47:14.029Z",
               "EditorCaption": ""
             }
           ]
